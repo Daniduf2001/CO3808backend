@@ -1,9 +1,18 @@
 const express = require('express');
 const createError = require('http-errors');
 const morgan = require('morgan');
+const dBConnection = require('./src/config/db');
 require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
+dBConnection();
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
