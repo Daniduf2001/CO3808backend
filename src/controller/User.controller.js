@@ -17,6 +17,14 @@ const addUser = async (req, res) => {
     }
 }
 
+const getAllUsers = async (req, res) => {
+    try {
+        const result = await userModel.find();
+        res.status(200).send({message: "All users", data: result});
+    } catch (e) {
+        res.status(500).send({message: "Something went wrong", error: e});
+    }
+}
 
 //check user login authentication
 const checkLoginAouth = async (req, res) => {
@@ -25,5 +33,6 @@ const checkLoginAouth = async (req, res) => {
 
 module.exports = {
     addUser,
+    getAllUsers,
     checkLoginAouth,
 }
