@@ -1,0 +1,36 @@
+### GET ALL Students
+GET http://localhost:8000/api/student
+
+
+### GET Single Student
+GET http://localhost:8000/api/student/3
+
+
+### ADD ALL Student
+POST http://localhost:8000/api/student
+Content-Type: application/json
+
+{
+  "StudentName":"Iphone 5",
+  "StudentMobile":"45646",
+  "StudentEmailAddress": "1",
+  "EducationalInstitute": "1"
+}
+
+
+### DELETE Single Student
+DELETE http://localhost:8000/api/student/2
+
+
+
+### UPDATE Single Student
+PATCH http://localhost:8000/api/student/3
+Content-Type: application/json
+
+
+{
+  "StudentName":"Iphone 5",
+  "StudentMobile":"45646",
+  "StudentEmailAddress": "145",
+  "EducationalInstitute": "102"
+}
