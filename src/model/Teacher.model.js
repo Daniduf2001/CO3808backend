@@ -1,19 +1,19 @@
 const mongoose = require("mongoose");
 
 const TeacherSchema = new mongoose.Schema({
-        StudentName: {
+        TeacherName: {
             type: String,
             required: true,
         },
-        StudentMobile: {
+        TeacherMobile: {
             type: String,
             required: true,
         },
-        StudentEmailAddress: {
+        TeacherEmailAddress: {
             type: String,
             required: true,
         },
-        EducationalInstitute: {
+        FieldOfExpertise: {
             type: String,
             required: true,
         },
