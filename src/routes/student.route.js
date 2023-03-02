@@ -1,24 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const {addStudent, updateStudent, getAllStudents} = require("./../controller/Student.controller");
 
 
-router.get('/', async (req, res, next) => {
-    res.send({message: 'Ok student api is working 🚀'});
-});
+router.get('/', getAllStudents);
 
-router.post("/", async (req, res, next) => {
-    const {email, password} = req.body;
-    if (email === "" || password === "") {
-        res.status(400).send({message: "Email or password is missing"});
-    }
-});
+router.post("/", addStudent);
 
-router.put("/", async (req, res, next) => {
-    const {email, password} = req.body;
-    if (email === "" || password === "") {
-        res.status(400).send({message: "Email or password is missing"});
-    }
-});
+router.patch("/:id", updateStudent);
 
 router.delete("/", async (req, res, next) => {
     const {email, password} = req.body;

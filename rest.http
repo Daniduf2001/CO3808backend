@@ -24,12 +24,12 @@ DELETE http://localhost:8000/api/student/2
 
 
 ### UPDATE Single Student
-PATCH http://localhost:8000/api/student/3
+PATCH http://localhost:8000/api/student/STU2
 Content-Type: application/json
 
 
 {
-  "StudentName":"Iphone 5",
+  "StudentName":"Madhua",
   "StudentMobile":"45646",
   "StudentEmailAddress": "145",
   "EducationalInstitute": "102"
