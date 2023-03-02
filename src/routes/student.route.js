@@ -8,7 +8,6 @@ const {
     getStudentByID
 } = require("./../controller/Student.controller");
 
-
 router.get('/', getAllStudents);
 
 router.post("/", addStudent);
