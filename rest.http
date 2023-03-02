@@ -17,6 +17,17 @@ Content-Type: application/json
   "EducationalInstitute": "1"
 }
 
+### ADD User Student
+POST http://localhost:8000/api/user
+Content-Type: application/json
+
+{
+  "UserName": "madhusha prasad",
+  "UserEmail": "madushaprasad21@mail.com",
+  "Password": "123456",
+  "DOB": "13/04/1999"
+}
+
 
 ### DELETE Single Student
 DELETE http://localhost:8000/api/student/STU2

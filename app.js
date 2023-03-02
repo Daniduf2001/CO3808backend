@@ -23,6 +23,7 @@ app.get('/', async (req, res, next) => {
 
 app.use('/api/student', require('./src/routes/student.route'));
 app.use('/api/teacher', require('./src/routes/teacher.route'));
+app.use('/api/user', require('./src/routes/user.route'));
 
 app.use((req, res, next) => {
     next(createError.NotFound());
