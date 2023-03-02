@@ -53,9 +53,32 @@ const updateStudent = async (req, res) => {
     }
 }
 
+// delete single student
+const deleteStudent = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const result = await studentModel.findOneAndDelete({StudentID: id});
+        res.status(200).send({message: "Student deleted successfully", data: result});
+    } catch (e) {
+        res.status(500).send({message: "Something went wrong", error: e});
+    }
+}
+
+// search single student by studentID
+const getStudentByID = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const result = await studentModel.findOne({StudentID: id});
+        res.status(200).send({message: "Student found", data: result});
+    } catch (e) {
+        res.status(500).send({message: "Something went wrong", error: e});
+    }
+}
 
 module.exports = {
     addStudent,
     updateStudent,
     getAllStudents,
+    deleteStudent,
+    getStudentByID,
 }

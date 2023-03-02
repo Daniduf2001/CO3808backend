@@ -3,7 +3,7 @@ GET http://localhost:8000/api/student
 
 
 ### GET Single Student
-GET http://localhost:8000/api/student/3
+GET http://localhost:8000/api/student/STU2
 
 
 ### ADD ALL Student
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 
 ### DELETE Single Student
-DELETE http://localhost:8000/api/student/2
+DELETE http://localhost:8000/api/student/STU2
 
 
 
