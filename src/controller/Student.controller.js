@@ -13,14 +13,18 @@ const getAllStudents = async (req, res) => {
 
 // add single student
 const addStudent = async (req, res) => {
+
+    console.log(req.body)
+
     const result = await studentModel.find();
     const studentCount = result.length;
 
     //generate new custom id for student
     const studentID = `STU${studentCount + 1}`;
 
-    const {StudentName, StudentMobile, StudentEmailAddress, EducationalInstitute} = req.body;
+    const {UserID, StudentName, StudentMobile, StudentEmailAddress, EducationalInstitute} = req.body;
     const student = new studentModel({
+        UserID,
         StudentID: studentID,
         StudentName,
         StudentMobile,
