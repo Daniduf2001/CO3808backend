@@ -39,6 +39,6 @@ const Assignment = new mongoose.Schema({
     }, {timestamps: true}
 );
 
-const AssignmentModel = mongoose.model("Assignment", Assignment);
+const AssignmentModel = mongoose.model("AssignmentModel", Assignment);
 
 module.exports = AssignmentModel;

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AssignmentModule = new mongoose.Schema({
+const ModuleModel = new mongoose.Schema({
         TeacherID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Teacher',
@@ -21,6 +21,6 @@ const AssignmentModule = new mongoose.Schema({
     }, {timestamps: true}
 );
 
-const AssignmentModuleModel = mongoose.model("AssignmentModule", AssignmentModule);
+const AssignmentModuleModel = mongoose.model("AssignmentModuleModel", ModuleModel);
 
 module.exports = AssignmentModuleModel;
