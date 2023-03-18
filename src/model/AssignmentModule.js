@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const AssignmentModule = new mongoose.Schema({
         TeacherID: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
+            ref: 'Teacher',
             required: true,
         },
         ModuleID: {
