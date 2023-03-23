@@ -32,7 +32,7 @@ const getAllUsers = async (req, res) => {
 const checkLoginAouth = async (req, res) => {
     //check user email and password
     const {UserEmail, Password} = req.body;
-    // try {
+    try {
         console.log(UserEmail, Password);
         const result = await userModel.findOne({UserEmail, Password});
         if (result) {
@@ -60,9 +60,9 @@ const checkLoginAouth = async (req, res) => {
         } else {
             res.status(500).send({isSuccess: false, message: "User login failed"});
         }
-    // } catch (e) {
-    //     res.status(500).send({message: "Something went wrong", error: e});
-    // }
+    } catch (e) {
+        res.status(500).send({message: "Something went wrong", error: e});
+    }
 }
 
 module.exports = {
