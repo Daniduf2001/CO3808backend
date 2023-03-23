@@ -19,8 +19,9 @@ const addTeacher = async (req, res) => {
     //generate new custom id for teacher
     const teacherID = `STU${studentCount + 1}`;
 
-    const {TeacherName, TeacherMobile, TeacherEmailAddress, FieldOfExpertise,} = req.body;
+    const {UserID,TeacherName, TeacherMobile, TeacherEmailAddress, FieldOfExpertise,} = req.body;
     const teacher = new teacherModel({
+        UserID,
         TeacherID: teacherID,
         TeacherName,
         TeacherMobile,
