@@ -14,8 +14,6 @@ const getAllAssignmentModule = async (req, res) => {
 // add single student
 const addAssignmentModule = async (req, res) => {
 
-    console.log(req.body)
-
     const result = await AssignmentModuleModel.find();
     const moduleCount = result.length;
 
