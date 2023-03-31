@@ -14,15 +14,16 @@ const addUser = async (req, res) => {
     });
     try {
         const result = await user.save();
-        await addUserToUserModel(req, res)
+        console.log(result)
+        const resultSecond = await addUserToUserModel(result.UserName, result.UserEmail, result.Password)
+        console.log(resultSecond);
         res.status(200).send({message: "User added successfully", data: result});
     } catch (e) {
         res.status(500).send({message: "Something went wrong", error: e});
     }
 }
 
-const addUserToUserModel = async (req, res) => {
-    const {UserName, Password, UserEmail} = req.body;
+const addUserToUserModel = async (UserName, Password, UserEmail) => {
     //checking if username exist
     User.findOne({UserEmail}, (err, user) => {
         if (err) res.status(500).json("Error has occured. Please refresh page")
