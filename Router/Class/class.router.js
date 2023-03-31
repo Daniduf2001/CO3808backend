@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const User = require('../../model/users.model');
-const Class = require('../../model/class.model');
+const User = require('../../models/user.model');
+const Class = require('../../models/class.model');
 const {nanoid} = require('nanoid');
 
 router.get('/get/class/:classId', (req, res) => {

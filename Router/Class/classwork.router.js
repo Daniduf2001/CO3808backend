@@ -1,11 +1,11 @@
-const {nanoid} = require('nanoid');
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const User = require('../../model/users.model');
-const Class = require('../../model/class.model');
-const Classwork = require('../../model/classwork.model');
+const User = require('../../models/user.model');
+const Class = require('../../models/class.model');
+const Classwork = require('../../models/classwork.model');
+const {nanoid} = require('nanoid');
 
 router.post('/create', jsonParser, (req, res) => {
     const {title, description, _class, type, author, duedate, token, options} = req.body;
