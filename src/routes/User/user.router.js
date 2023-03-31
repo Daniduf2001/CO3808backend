@@ -75,7 +75,6 @@ router.post('/register', jsonParser, (req, res) => {
 
 //login user
 router.post('/login', (req, res) => {
-    console.log(req.body)
     const {email, password} = req.body;
     //find the user
     User.findOne({email}, (err, user) => {
