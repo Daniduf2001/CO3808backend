@@ -1,5 +1,4 @@
-import {nanoid} from "nanoid";
-
+const {nanoid} = require('nanoid');
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
