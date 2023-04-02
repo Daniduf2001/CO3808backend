@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     username: {
         type: String,
-        required: true, 
+        required: true,
         minlength: 3,
         maxlength: 50,
     },
@@ -20,7 +20,7 @@ const UserSchema = new Schema({
         type: String,
         //required: true,
         trim: true,
-        unique: true,  
+        unique: true,
     },
     profile_picture: {
         type: Object,
@@ -34,20 +34,45 @@ const UserSchema = new Schema({
     archived_class: {
         type: Array,
         required: false
+    },
+    userType: {
+        type: String,
+        required: true,
+        default: "teacher"
+    },
+    name: {
+        type: String,
+        required: true,
+        default: "null"
+    },
+    mobile: {
+        type: String,
+        required: true,
+        default: "null"
+    },
+    fieldOfExpertise: {
+        type: String,
+        required: true,
+        default: "null"
+    },
+    education: {
+        type: String,
+        required: true,
+        default: "null"
     }
 }, {
     timestamps: true,
 })
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
     var user = this;
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
     // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
         if (err) return next(err);
         // hash the password using our new salt
-        bcrypt.hash(user.password, salt, function(err, hash) {
+        bcrypt.hash(user.password, salt, function (err, hash) {
             if (err) return next(err);
             // override the cleartext password with the hashed one
             user.password = hash;
@@ -55,11 +80,11 @@ UserSchema.pre('save', function(next) {
         });
     });
 });
-     
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+
+UserSchema.methods.comparePassword = function (candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
         if (err) return cb(err);
-        else{
+        else {
             cb(null, isMatch);
         }
     });

@@ -7,6 +7,7 @@ const fs = require('fs');
 const sharp = require('sharp');
 const multer = require('multer');
 const path = require('path');
+const Classwork = require("../../models/classwork.model");
 
 //Get Security key for token generating in .env file
 require('dotenv').config();
@@ -137,9 +138,34 @@ router.post('/profile_picture', jsonParser, (req, res) => {
 //Update user info
 router.post('/update', jsonParser, (req, res) => {
     const token = req.body.token
+    console.log(token);
     if (!token) res.status(403).json("Permission denied.")
     else {
         User.findOne({token: token, email: req.body.email}, (err, user) => {
+            if (err) res.status(500).json("Something went wrong.")
+            else if (!user) res.status(404).json("User not found.")
+            else {
+                console.log(user)
+                const token = generateToken();
+                user.token = token;
+                user.email = req.body.email;
+                user.username = req.body.username;
+                user.save()
+                    .then(() => res.json({message: "Updated", token: token}))
+                    .catch(err => res.status(500).json(err));
+            }
+        })
+    }
+})
+
+
+// update user by ID
+router.post('/update/by/:id', jsonParser, (req, res) => {
+    const {name, mobile, fieldOfExpertise, education, userType} = req.body;
+    const token = req.body.token;
+    if (!token) res.status(403).json("Permission denied.")
+    else {
+        User.findById(req.params.id, (err, user) => {
             if (err) res.status(500).json("Something went wrong.")
             else if (!user) res.status(404).json("User not found.")
             else {
@@ -147,6 +173,11 @@ router.post('/update', jsonParser, (req, res) => {
                 user.token = token;
                 user.email = req.body.email;
                 user.username = req.body.username;
+                user.name = name;
+                user.mobile = mobile;
+                user.fieldOfExpertise = fieldOfExpertise;
+                user.education = education;
+                user.userType = userType;
                 user.save()
                     .then(() => res.json({message: "Updated", token: token}))
                     .catch(err => res.status(500).json(err));
@@ -179,5 +210,42 @@ router.post('/password/update', jsonParser, (req, res) => {
         })
     }
 })
+
+router.get('/all', jsonParser, (req, res) => {
+    User.find((err, data) => {
+        if (err) {
+            res.status(500).json("Something went wrong.")
+        } else {
+            //get userType student details
+            let studentDetails = [];
+            data.forEach((user) => {
+                if (user.userType === "student") {
+                    studentDetails.push(user)
+                }
+            })
+            res.json(studentDetails)
+        }
+
+    })
+})
+
+
+router.get('/allTeacher', jsonParser, (req, res) => {
+    User.find((err, data) => {
+        if (err) {
+            res.status(500).json("Something went wrong.")
+        } else {
+            //get userType teacher details
+            let teacherDetails = [];
+            data.forEach((user) => {
+                if (user.userType === "teacher") {
+                    teacherDetails.push(user)
+                }
+            })
+            res.json(teacherDetails)
+        }
+    })
+})
+
 
 module.exports = router;

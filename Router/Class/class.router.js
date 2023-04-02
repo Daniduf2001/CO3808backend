@@ -5,6 +5,7 @@ const jsonParser = bodyParser.json();
 const User = require('../../models/user.model');
 const Class = require('../../models/class.model');
 const {nanoid} = require('nanoid');
+const Classwork = require("../../models/classwork.model");
 
 router.get('/get/class/:classId', (req, res) => {
     const classId = req.params.classId;
@@ -376,5 +377,13 @@ router.post('/user/unarchive', jsonParser, (req, res) => {
         }
     })
 })
+
+router.get('/all', jsonParser, (req, res) => {
+    Class.find((err, data) => {
+        if (err) res.status(500).json("Something went wrong.")
+        else res.json(data)
+    })
+})
+
 
 module.exports = router;

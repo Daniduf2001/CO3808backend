@@ -127,4 +127,13 @@ router.get('/get/answer/:classwork', jsonParser, (req, res) => {
     })
 })
 
+
+// get all classwork
+router.get('/all', jsonParser, (req, res) => {
+    Classwork.find((err, data) => {
+        if (err) res.status(500).json("Something went wrong.")
+        else res.json(data)
+    })
+})
+
 module.exports = router;
