@@ -19,7 +19,7 @@ const REFRESH_TOKEN = "1//0gANSII2wO_0aCgYIARAAGBASNwF-L9IrkvWX0Ru1KPC1OyOyGRp7x
 const oAuth2Client = new OAuth2Client(
     GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET,
-    'http://localhost:3000/'
+    'http://localhost:3000/adminTeacher/timeTable'
 );
 
 
@@ -263,11 +263,10 @@ router.get('/allTeacher', jsonParser, (req, res) => {
 
 
 router.post("/create-tokens", async (req, res, next) => {
-    console.log('dssdsdd')
     try {
         const {code} = req.body;
-        console.log(code);
-        const data = await oAuth2Client.getToken(code);
+        console.log(typeof (code));
+        const data = await oAuth2Client.getToken(code)
         console.log(data);
         console.log('its working');
 

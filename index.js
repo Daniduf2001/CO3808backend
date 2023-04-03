@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, "/public/")));
 const userRouter = require('./Router/User/user.router');
 const classRouter = require('./Router/Class/class.router');
 const classworkRouter = require('./Router/Class/classwork.router');
-const googleCalendarRouter = require('./Router/calendar/calendar.route');
+const googleCalendarRouter = require('./Router/calendar/initCalendar');
 app.use('/users', userRouter)
 app.use('/class', classRouter)
 app.use('/classwork', classworkRouter)
