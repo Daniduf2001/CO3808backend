@@ -23,7 +23,9 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(cors(
     {
-        origin: '*',
+        optionsSuccessStatus: 200, // For legacy browser support
+        credentials: true, // This is important.
+        origin: 'http://localhost:3000/'
     }
 ));
 app.use(express.static(path.join(__dirname, "/public/")));
@@ -33,9 +35,11 @@ app.use(express.static(path.join(__dirname, "/public/")));
 const userRouter = require('./Router/User/user.router');
 const classRouter = require('./Router/Class/class.router');
 const classworkRouter = require('./Router/Class/classwork.router');
+const googleCalendarRouter = require('./Router/calendar/calendar.route');
 app.use('/users', userRouter)
 app.use('/class', classRouter)
 app.use('/classwork', classworkRouter)
+app.use('/calendar', googleCalendarRouter)
 
 //listening to the port
 const PORT = process.env.PORT || 5000;
